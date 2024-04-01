@@ -66,8 +66,9 @@ def check_password():
 @app.route('/api/getSignedUrl', methods=['POST'])
 def get_signed_url():
     content = request.json
-    filename = content['filename']  # The name of the file to be uploaded
-    blob_name = f'uploads/{filename}'  # Customize the path as needed
+    filename = content['filename']  
+    unique_folder_id = content['uniqueFolderId']
+    blob_name = f'uploads/{unique_folder_id}/{filename}'
 
     bucket = storage_client.bucket(BUCKET_NAME)
     blob = bucket.blob(blob_name)
