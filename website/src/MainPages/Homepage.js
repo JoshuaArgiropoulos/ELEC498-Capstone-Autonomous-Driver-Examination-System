@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 
 import FileUpload from '../components/FileUpload';
 import Header from '../components/Header';
@@ -51,7 +52,8 @@ function Homepage() {
   
       try {
         // Request a signed URL from your Flask backend
-        const uniqueFolderId = uuid.v4();
+        const uniqueFolderId = uuidv4();
+        
         const response = await fetch('http://127.0.0.1:5000/api/getSignedUrl', {
           method: 'POST',
           headers: {
