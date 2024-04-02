@@ -45,15 +45,15 @@ function Homepage() {
   };
   const uploadFiles = async () => {
     const fileKeys = ['front', 'leftBack', 'rightBack', 'dashboard']; // Keys for your files
-  
+    const uniqueFolderId = uuidv4();
     for (const key of fileKeys) {
       const file = files[key];
       if (!file) continue; // Skip if no file is selected
   
       try {
         // Request a signed URL from your Flask backend
-        const uniqueFolderId = uuidv4();
         
+
         const response = await fetch('http://127.0.0.1:5000/api/getSignedUrl', {
           method: 'POST',
           headers: {
